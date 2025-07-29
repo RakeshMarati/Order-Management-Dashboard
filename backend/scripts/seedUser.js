@@ -20,7 +20,7 @@ const seedUser = async () => {
     }
 
     // Create demo user
-    const hashedPassword = await bcrypt.hash('password123', 10);
+    const hashedPassword = await bcrypt.hash('password@123', 10);
     
     const demoUser = await User.create({
       email: 'admin@boutique.com',
