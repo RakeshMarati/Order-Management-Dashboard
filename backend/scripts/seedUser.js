@@ -7,8 +7,9 @@ const seedUser = async () => {
   try {
     // Connect to MongoDB
     await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // Remove deprecated options to prevent password exposure in logs
+      // useNewUrlParser: true, // No longer needed in newer versions
+      // useUnifiedTopology: true, // No longer needed in newer versions
     });
 
     // Check if user already exists
