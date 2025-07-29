@@ -130,8 +130,58 @@
   margin-top: 15px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .order-form-container {
+    margin: 10px 0;
+  }
+  
+  .order-form-card {
+    padding: 15px;
+    border-radius: 15px;
+    margin: 5px;
+  }
+  
+  .order-form-card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .form-section {
+    padding: 15px 12px;
+    border-radius: 12px;
+  }
+  
+  .form-section h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .submit-button {
+    padding: 14px 20px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .order-form {
+    gap: 20px;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
   .order-form-card {
     padding: 20px;
     margin: 10px;
@@ -148,6 +198,51 @@
   
   .order-form-card h3 {
     font-size: 20px;
+  }
+  
+  .submit-button {
+    width: 100%;
+  }
+}
+
+/* Small Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .order-form-card {
+    padding: 25px;
+  }
+  
+  .form-row {
+    gap: 18px;
+  }
+  
+  .form-section {
+    padding: 18px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .order-form-card {
+    padding: 40px;
+  }
+  
+  .order-form-card h3 {
+    font-size: 28px;
+  }
+  
+  .form-section h4 {
+    font-size: 20px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 15px;
+  }
+  
+  .submit-button {
+    padding: 18px 35px;
+    font-size: 17px;
   }
 }
 
