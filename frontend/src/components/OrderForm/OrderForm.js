@@ -24,18 +24,34 @@ const OrderForm = ({ onOrderCreated }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // Special handling for contact number - only allow digits
+    if (name === 'customerContact') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: numericValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Basic validation
+    // Enhanced validation
     if (!formData.customerName || !formData.customerContact || !formData.product || !formData.deliveryDate || !formData.price) {
       setError('Please fill in all required fields');
+      return;
+    }
+
+    // Contact number validation - minimum 10 digits
+    if (formData.customerContact.length < 10) {
+      setError('Contact number must be at least 10 digits');
       return;
     }
 
@@ -132,11 +148,15 @@ const OrderForm = ({ onOrderCreated }) => {
                   id="customerContact"
                   type="tel"
                   name="customerContact"
-                  placeholder="Enter contact number"
+                  placeholder="Enter 10-digit contact number"
                   value={formData.customerContact}
                   onChange={handleInputChange}
+                  maxLength="15"
                   required
                 />
+                {formData.customerContact && formData.customerContact.length < 10 && (
+                  <small className="validation-error">Contact number must be at least 10 digits</small>
+                )}
               </div>
             </div>
             <div className="form-group">

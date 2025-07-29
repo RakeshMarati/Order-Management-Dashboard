@@ -130,6 +130,21 @@
   margin-top: 15px;
 }
 
+/* Validation error styles */
+.validation-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
 /* Mobile Responsive */
 @media (max-width: 480px) {
   .order-form-container {
@@ -180,11 +195,32 @@
   }
 }
 
-/* Tablet Responsive */
+/* Tablet Responsive - Improved */
 @media (min-width: 481px) and (max-width: 768px) {
+  .order-form-container {
+    margin: 15px 0;
+  }
+  
   .order-form-card {
     padding: 20px;
+    border-radius: 16px;
     margin: 10px;
+  }
+  
+  .order-form-card h3 {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  
+  .form-section {
+    padding: 18px 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .form-section h4 {
+    font-size: 17px;
+    margin-bottom: 15px;
   }
   
   .form-row {
@@ -192,57 +228,100 @@
     gap: 15px;
   }
   
-  .form-section {
-    padding: 15px;
-  }
-  
-  .order-form-card h3 {
-    font-size: 20px;
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 15px 18px;
+    font-size: 16px;
   }
   
   .submit-button {
+    padding: 16px 30px;
+    font-size: 16px;
     width: 100%;
+  }
+  
+  .order-form {
+    gap: 25px;
   }
 }
 
 /* Small Desktop */
 @media (min-width: 769px) and (max-width: 1024px) {
   .order-form-card {
-    padding: 25px;
-  }
-  
-  .form-row {
-    gap: 18px;
-  }
-  
-  .form-section {
-    padding: 18px;
-  }
-}
-
-/* Large Desktop */
-@media (min-width: 1200px) {
-  .order-form-card {
-    padding: 40px;
+    padding: 30px;
+    max-width: 900px;
   }
   
   .order-form-card h3 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+  
+  .form-section {
+    padding: 20px;
   }
   
   .form-section h4 {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  
+  .form-row {
+    gap: 20px;
   }
   
   .form-group input,
   .form-group select,
   .form-group textarea {
+    padding: 16px 20px;
     font-size: 15px;
   }
   
   .submit-button {
-    padding: 18px 35px;
+    padding: 17px 35px;
     font-size: 17px;
+  }
+}
+
+/* Large Desktop - Improved */
+@media (min-width: 1200px) {
+  .order-form-card {
+    padding: 40px;
+    max-width: 1000px;
+  }
+  
+  .order-form-card h3 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .form-section {
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .form-section h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    gap: 25px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 18px 22px;
+    font-size: 16px;
+  }
+  
+  .submit-button {
+    padding: 18px 40px;
+    font-size: 18px;
+  }
+  
+  .order-form {
+    gap: 30px;
   }
 }
 

@@ -98,7 +98,7 @@
   }
 }
 
-/* Tablet Responsive */
+/* Tablet Responsive - Improved */
 @media (min-width: 481px) and (max-width: 768px) {
   .dashboard-container {
     padding: 15px;
@@ -108,31 +108,28 @@
     flex-direction: column;
     text-align: center;
     gap: 20px;
-    padding: 20px;
+    padding: 25px 20px;
+    border-radius: 16px;
   }
   
   .header-content h1 {
-    font-size: 24px;
+    font-size: 26px;
+    margin-bottom: 8px;
   }
   
   .header-content p {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   .logout-button {
     width: 100%;
     max-width: 200px;
-  }
-}
-
-/* Small Desktop */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .dashboard-header {
-    padding: 20px 25px;
+    padding: 12px 25px;
+    font-size: 15px;
   }
   
-  .header-content h1 {
-    font-size: 28px;
+  .dashboard-main {
+    padding: 0 10px;
   }
   
   .dashboard-content {
@@ -140,14 +137,49 @@
   }
 }
 
-/* Large Desktop */
-@media (min-width: 1200px) {
+/* Small Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+  
   .dashboard-header {
-    padding: 30px 40px;
+    padding: 25px 30px;
+    border-radius: 18px;
+  }
+  
+  .header-content h1 {
+    font-size: 30px;
+  }
+  
+  .header-content p {
+    font-size: 16px;
+  }
+  
+  .logout-button {
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+  
+  .dashboard-content {
+    gap: 30px;
+  }
+}
+
+/* Large Desktop - Improved */
+@media (min-width: 1200px) {
+  .dashboard-container {
+    padding: 30px;
+  }
+  
+  .dashboard-header {
+    padding: 35px 45px;
+    border-radius: 20px;
   }
   
   .header-content h1 {
     font-size: 36px;
+    margin-bottom: 12px;
   }
   
   .header-content p {
@@ -155,8 +187,16 @@
   }
   
   .logout-button {
-    padding: 14px 28px;
-    font-size: 15px;
+    padding: 16px 32px;
+    font-size: 17px;
+  }
+  
+  .dashboard-main {
+    padding: 0 20px;
+  }
+  
+  .dashboard-content {
+    gap: 35px;
   }
 }
 
