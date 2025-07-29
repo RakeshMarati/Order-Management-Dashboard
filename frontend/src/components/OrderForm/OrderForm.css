@@ -357,3 +357,159 @@
   transform: translateY(-2px);
   transition: all 0.3s ease;
 }
+
+/* Large Desktop responsive (1367px - 1919px) */
+@media (min-width: 1367px) and (max-width: 1919px) {
+  .order-form-container {
+    margin: 30px 0;
+  }
+  
+  .order-form-card {
+    padding: 45px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .order-form-card h3 {
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+  
+  .form-section {
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .form-section h4 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+  
+  .form-row {
+    gap: 30px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 20px 25px;
+    font-size: 17px;
+  }
+  
+  .form-group label {
+    font-size: 15px;
+  }
+  
+  .submit-button {
+    padding: 20px 45px;
+    font-size: 19px;
+  }
+  
+  .order-form {
+    gap: 35px;
+  }
+}
+
+/* Ultra-wide screens (1920px and above) */
+@media (min-width: 1920px) {
+  .order-form-container {
+    margin: 40px 0;
+  }
+  
+  .order-form-card {
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .order-form-card h3 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .form-section {
+    padding: 35px;
+    margin-bottom: 35px;
+  }
+  
+  .form-section h4 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .form-row {
+    gap: 35px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 22px 28px;
+    font-size: 18px;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+  }
+  
+  .submit-button {
+    padding: 22px 50px;
+    font-size: 20px;
+  }
+  
+  .order-form {
+    gap: 40px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .order-form-container {
+    margin: 10px 0;
+  }
+  
+  .order-form-card {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .order-form-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .form-section h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .form-group label {
+    font-size: 12px;
+  }
+  
+  .submit-button {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+  
+  .order-form {
+    gap: 15px;
+  }
+}

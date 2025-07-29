@@ -269,3 +269,155 @@
     font-size: 18px;
   }
 }
+
+/* Large Desktop responsive (1367px - 1919px) */
+@media (min-width: 1367px) and (max-width: 1919px) {
+  .login-container {
+    padding: 30px;
+  }
+  
+  .login-card {
+    max-width: 550px;
+    padding: 55px 50px;
+    border-radius: 16px;
+  }
+  
+  .login-card h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .login-subtitle {
+    font-size: 19px;
+    margin-bottom: 35px;
+  }
+  
+  .form-group input {
+    padding: 20px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+  
+  .password-group input {
+    padding-right: 65px;
+  }
+  
+  .password-toggle {
+    right: 22px;
+    font-size: 26px;
+  }
+  
+  .login-button {
+    padding: 20px 45px;
+    font-size: 19px;
+    border-radius: 10px;
+  }
+  
+  .login-footer {
+    margin-top: 35px;
+    padding-top: 25px;
+    font-size: 13px;
+  }
+}
+
+/* Ultra-wide screens (1920px and above) */
+@media (min-width: 1920px) {
+  .login-container {
+    padding: 40px;
+  }
+  
+  .login-card {
+    max-width: 600px;
+    padding: 60px 55px;
+    border-radius: 18px;
+  }
+  
+  .login-card h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .login-subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .form-group input {
+    padding: 22px 28px;
+    font-size: 19px;
+    border-radius: 12px;
+  }
+  
+  .password-group input {
+    padding-right: 70px;
+  }
+  
+  .password-toggle {
+    right: 25px;
+    font-size: 28px;
+  }
+  
+  .login-button {
+    padding: 22px 50px;
+    font-size: 20px;
+    border-radius: 12px;
+  }
+  
+  .login-footer {
+    margin-top: 40px;
+    padding-top: 30px;
+    font-size: 14px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .login-container {
+    padding: 10px;
+  }
+  
+  .login-card {
+    padding: 20px 25px;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  .login-card h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .login-subtitle {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group input {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .password-group input {
+    padding-right: 40px;
+  }
+  
+  .password-toggle {
+    right: 10px;
+    font-size: 16px;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .login-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    font-size: 11px;
+  }
+}

@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 20px;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .dashboard-header {
@@ -14,6 +15,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .header-content h1 {
@@ -21,6 +24,7 @@
   font-weight: 700;
   margin: 0 0 8px 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
 }
 
 .header-content p {
@@ -28,6 +32,7 @@
   margin: 0;
   opacity: 0.9;
   font-weight: 400;
+  line-height: 1.4;
 }
 
 .logout-button {
@@ -41,6 +46,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
 
 .logout-button:hover {
@@ -53,14 +59,16 @@
 .dashboard-main {
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .dashboard-content {
   display: grid;
   gap: 30px;
+  width: 100%;
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive (320px - 480px) */
 @media (max-width: 480px) {
   .dashboard-container {
     padding: 10px;
@@ -72,10 +80,12 @@
     gap: 15px;
     padding: 20px 15px;
     border-radius: 15px;
+    margin-bottom: 20px;
   }
   
   .header-content h1 {
     font-size: 20px;
+    margin-bottom: 5px;
   }
   
   .header-content p {
@@ -98,7 +108,7 @@
   }
 }
 
-/* Tablet Responsive - Improved */
+/* Large Mobile responsive (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .dashboard-container {
     padding: 15px;
@@ -110,6 +120,7 @@
     gap: 20px;
     padding: 25px 20px;
     border-radius: 16px;
+    margin-bottom: 25px;
   }
   
   .header-content h1 {
@@ -137,7 +148,7 @@
   }
 }
 
-/* Small Desktop */
+/* Tablet responsive (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .dashboard-container {
     padding: 20px;
@@ -146,6 +157,7 @@
   .dashboard-header {
     padding: 25px 30px;
     border-radius: 18px;
+    margin-bottom: 30px;
   }
   
   .header-content h1 {
@@ -166,8 +178,43 @@
   }
 }
 
-/* Large Desktop - Improved */
-@media (min-width: 1200px) {
+/* Small Desktop responsive (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .dashboard-container {
+    padding: 25px;
+  }
+  
+  .dashboard-header {
+    padding: 30px 35px;
+    border-radius: 20px;
+    margin-bottom: 35px;
+  }
+  
+  .header-content h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+  }
+  
+  .header-content p {
+    font-size: 17px;
+  }
+  
+  .logout-button {
+    padding: 16px 32px;
+    font-size: 17px;
+  }
+  
+  .dashboard-main {
+    padding: 0 15px;
+  }
+  
+  .dashboard-content {
+    gap: 35px;
+  }
+}
+
+/* Large Desktop responsive (1367px - 1919px) */
+@media (min-width: 1367px) and (max-width: 1919px) {
   .dashboard-container {
     padding: 30px;
   }
@@ -175,6 +222,7 @@
   .dashboard-header {
     padding: 35px 45px;
     border-radius: 20px;
+    margin-bottom: 40px;
   }
   
   .header-content h1 {
@@ -187,8 +235,8 @@
   }
   
   .logout-button {
-    padding: 16px 32px;
-    font-size: 17px;
+    padding: 18px 36px;
+    font-size: 18px;
   }
   
   .dashboard-main {
@@ -196,7 +244,75 @@
   }
   
   .dashboard-content {
-    gap: 35px;
+    gap: 40px;
+  }
+}
+
+/* Ultra-wide screens (1920px and above) */
+@media (min-width: 1920px) {
+  .dashboard-container {
+    padding: 40px;
+  }
+  
+  .dashboard-header {
+    padding: 40px 50px;
+    border-radius: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .header-content h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+  
+  .header-content p {
+    font-size: 20px;
+  }
+  
+  .logout-button {
+    padding: 20px 40px;
+    font-size: 19px;
+  }
+  
+  .dashboard-main {
+    padding: 0 30px;
+    max-width: 1600px;
+  }
+  
+  .dashboard-content {
+    gap: 50px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+  
+  .dashboard-header {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .header-content h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .header-content p {
+    font-size: 12px;
+  }
+  
+  .logout-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .dashboard-content {
+    gap: 15px;
   }
 }
 
