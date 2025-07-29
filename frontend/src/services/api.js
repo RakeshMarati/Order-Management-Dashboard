@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Force rebuild - Updated API URL for production deployment
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://order-management-dashboard.onrender.com/api';
 
 // Create axios instance
