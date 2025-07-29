@@ -28,6 +28,6 @@
     }
   ],
   "env": {
-    "REACT_APP_API_URL": "https://karthikeya-boutique-api.onrender.com/api"
+    "REACT_APP_API_URL": "https://order-management-dashboard.onrender.com/api"
   }
 }

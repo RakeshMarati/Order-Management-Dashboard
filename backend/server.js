@@ -12,8 +12,8 @@ connectDB();
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://karthikeya-boutique.vercel.app',
     'https://order-management-dashboard.vercel.app',
+    'https://karthikeya-boutique.vercel.app',
     'https://*.vercel.app'
   ],
   credentials: true,
