@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-// Suppress deprecation warnings to prevent password exposure in logs
-process.env.NODE_NO_WARNINGS = '1';
-
 const connectDB = async () => {
   try {
     // Add required options to prevent deprecation warnings and URL logging
