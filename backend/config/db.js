@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
+// Suppress deprecation warnings to prevent password exposure in logs
+process.env.NODE_NO_WARNINGS = '1';
+
 const connectDB = async () => {
   try {
-    // Use newer connection options to avoid deprecation warnings
+    // Add required options to prevent deprecation warnings and URL logging
     const conn = await mongoose.connect(process.env.MONGO_URI, {
-      // Remove deprecated options that cause warnings
-      // useNewUrlParser: true, // No longer needed in newer versions
-      // useUnifiedTopology: true, // No longer needed in newer versions
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // Additional options to prevent warnings
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
     });
     
     console.log(`MongoDB Connected: ${conn.connection.host}`);
