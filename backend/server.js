@@ -8,7 +8,19 @@ require('dotenv').config();
 const app = express();
 connectDB();
 
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'https://karthikeya-boutique.vercel.app',
+    'https://order-management-dashboard.vercel.app',
+    'https://*.vercel.app'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Test route
