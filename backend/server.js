@@ -10,12 +10,7 @@ connectDB();
 
 // CORS configuration for production
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'https://order-management-dashboard.vercel.app',
-    'https://karthikeya-boutique.vercel.app',
-    'https://*.vercel.app'
-  ],
+  origin: true, // Allow all origins for now
   credentials: true,
   optionsSuccessStatus: 200
 };
