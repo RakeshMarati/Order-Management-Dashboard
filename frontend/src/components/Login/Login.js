@@ -4,9 +4,9 @@ import { useAuth } from '../../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('admin@boutique.com');
+  const [password, setPassword] = useState('password@123');
+  const [showPassword, setShowPassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { login, error } = useAuth();
@@ -34,6 +34,11 @@ const Login = () => {
       <div className="login-card">
         <h2>Karthikeya Boutique</h2>
         <p className="login-subtitle">Order Management System</p>
+        <div className="credentials-hint">
+          <p><strong>Demo Credentials</strong></p>
+          <p>Email: <code>admin@boutique.com</code></p>
+          <p>Password: <code>password@123</code></p>
+        </div>
         
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">

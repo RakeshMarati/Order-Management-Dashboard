@@ -30,6 +30,27 @@
   font-size: 14px;
 }
 
+.credentials-hint {
+  background: #f7f9fc;
+  border: 1px dashed #aab4c1;
+  color: #445066;
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.credentials-hint p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.credentials-hint code {
+  background: #eef2f7;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .login-form {
   text-align: left;
 }
