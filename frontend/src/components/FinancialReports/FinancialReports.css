@@ -1,18 +1,22 @@
+/* ============================================
+   MOBILE-FIRST APPROACH - Financial Reports Styles
+   ============================================ */
+
 .financial-reports-container {
   width: 100%;
-  padding: 20px;
+  padding: 15px;
 }
 
 .reports-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .reports-header h2 {
   color: #667eea;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
 }
 
@@ -24,65 +28,72 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  min-height: 44px; /* Touch target */
+  width: 100%;
+  max-width: 200px;
 }
 
 .filters-section {
   background: #f8f9fa;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .filter-row {
   display: flex;
-  gap: 15px;
-  align-items: end;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  width: 100%;
 }
 
 .filter-group label {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .filter-group input {
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  font-size: 16px; /* Prevents zoom on iOS */
 }
 
 .apply-filters-btn {
   background: #667eea;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-radius: 6px;
   cursor: pointer;
   height: fit-content;
+  min-height: 44px; /* Touch target */
 }
 
 .financial-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .summary-card {
   background: white;
   border-radius: 12px;
-  padding: 25px;
+  padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  text-align: center;
+  gap: 15px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -92,9 +103,9 @@
 }
 
 .card-icon {
-  font-size: 3rem;
-  width: 80px;
-  height: 80px;
+  font-size: 2.5rem;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,18 +131,19 @@
 
 .card-content {
   flex: 1;
+  width: 100%;
 }
 
 .card-content h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .card-amount {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 8px 0;
   color: #667eea;
 }
 
@@ -153,17 +165,19 @@
 
 .card-content small {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .net-profit-card {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 16px;
-  padding: 40px;
-  margin-bottom: 30px;
+  padding: 30px 20px;
+  margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 30px;
+  text-align: center;
+  gap: 20px;
   color: white;
   box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
@@ -174,9 +188,9 @@
 }
 
 .profit-icon {
-  font-size: 4rem;
-  width: 100px;
-  height: 100px;
+  font-size: 3rem;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,17 +200,18 @@
 
 .profit-content {
   flex: 1;
+  width: 100%;
 }
 
 .profit-content h2 {
-  margin: 0 0 15px 0;
-  font-size: 1.8rem;
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
 }
 
 .profit-amount {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin: 15px 0;
+  margin: 12px 0;
 }
 
 .profit-amount.positive {
@@ -208,35 +223,35 @@
 }
 
 .profit-content small {
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: 0.9;
 }
 
 .breakdown-section {
   background: white;
   border-radius: 12px;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .breakdown-section h3 {
-  margin: 0 0 20px 0;
+  margin: 0 0 15px 0;
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .breakdown-chart {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .breakdown-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   background: #f8f9fa;
   border-radius: 8px;
 }
@@ -244,18 +259,18 @@
 .breakdown-item.total {
   background: #e9ecef;
   font-weight: bold;
-  font-size: 1.1rem;
-  margin-top: 10px;
+  font-size: 1rem;
+  margin-top: 8px;
 }
 
 .breakdown-label {
   color: #333;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .breakdown-value {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .breakdown-value.income {
@@ -277,69 +292,299 @@
 .breakdown-divider {
   height: 2px;
   background: #dee2e6;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .quick-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
 
 .stat-box {
   background: white;
   border-radius: 12px;
-  padding: 20px;
+  padding: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .stat-box h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
 }
 
 .stat-box p {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: #667eea;
 }
 
 .error-message {
   color: #e74c3c;
-  padding: 15px;
+  padding: 12px;
   background: #fee;
   border-radius: 8px;
   margin-bottom: 20px;
+  font-size: 13px;
 }
 
 .loading-message {
   text-align: center;
-  padding: 60px;
+  padding: 40px 20px;
   color: #666;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .financial-summary {
-    grid-template-columns: 1fr;
+/* ============================================
+   TABLET - 481px and up
+   ============================================ */
+@media (min-width: 481px) {
+  .financial-reports-container {
+    padding: 20px;
   }
-  
-  .net-profit-card {
-    flex-direction: column;
-    text-align: center;
+
+  .reports-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
   }
-  
+
+  .reports-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .refresh-button {
+    width: auto;
+    max-width: none;
+  }
+
+  .filters-section {
+    padding: 18px;
+    margin-bottom: 25px;
+  }
+
   .filter-row {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
   }
-  
+
   .filter-group {
-    width: 100%;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .financial-summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+  }
+
+  .summary-card {
+    flex-direction: row;
+    text-align: left;
+    padding: 22px;
+  }
+
+  .card-icon {
+    font-size: 2.8rem;
+    width: 75px;
+    height: 75px;
+  }
+
+  .card-amount {
+    font-size: 1.7rem;
+  }
+
+  .net-profit-card {
+    flex-direction: row;
+    text-align: left;
+    padding: 35px 25px;
+    margin-bottom: 25px;
+  }
+
+  .profit-icon {
+    font-size: 3.5rem;
+    width: 90px;
+    height: 90px;
+  }
+
+  .profit-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .profit-amount {
+    font-size: 2.5rem;
+  }
+
+  .breakdown-section {
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+
+  .breakdown-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
   }
 }
 
+/* ============================================
+   LARGE TABLET/SMALL DESKTOP - 769px and up
+   ============================================ */
+@media (min-width: 769px) {
+  .financial-reports-container {
+    padding: 25px;
+  }
+
+  .reports-header {
+    margin-bottom: 30px;
+  }
+
+  .reports-header h2 {
+    font-size: 2rem;
+  }
+
+  .filters-section {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .financial-summary {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .summary-card {
+    padding: 25px;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+  }
+
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .card-amount {
+    font-size: 2rem;
+  }
+
+  .net-profit-card {
+    padding: 40px;
+    margin-bottom: 30px;
+    gap: 30px;
+  }
+
+  .profit-icon {
+    font-size: 4rem;
+    width: 100px;
+    height: 100px;
+  }
+
+  .profit-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .profit-amount {
+    font-size: 3rem;
+  }
+
+  .breakdown-section {
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+
+  .breakdown-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .breakdown-chart {
+    gap: 15px;
+  }
+
+  .breakdown-item {
+    padding: 15px;
+  }
+
+  .breakdown-item.total {
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+
+  .breakdown-label {
+    font-size: 1rem;
+  }
+
+  .breakdown-value {
+    font-size: 1.1rem;
+  }
+
+  .quick-stats {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .stat-box {
+    padding: 20px;
+  }
+
+  .stat-box h4 {
+    font-size: 0.9rem;
+  }
+
+  .stat-box p {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   DESKTOP - 1025px and up
+   ============================================ */
+@media (min-width: 1025px) {
+  .financial-reports-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .financial-summary {
+    gap: 25px;
+  }
+
+  .summary-card {
+    padding: 28px;
+  }
+
+  .net-profit-card {
+    padding: 45px;
+  }
+
+  .breakdown-section {
+    padding: 35px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .refresh-button,
+  .apply-filters-btn {
+    min-height: 48px;
+  }
+}
