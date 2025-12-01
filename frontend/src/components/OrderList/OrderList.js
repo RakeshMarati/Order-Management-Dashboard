@@ -194,6 +194,7 @@ const OrderList = () => {
         </div>
       ) : (
         <div className="orders-table-container">
+          <div className="scroll-hint-mobile">← Swipe to see all columns →</div>
           <table className="orders-table">
             <thead>
               <tr>

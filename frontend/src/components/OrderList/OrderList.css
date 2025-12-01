@@ -140,6 +140,43 @@
   margin: 0;
   /* Ensure container doesn't cause page overflow */
   box-sizing: border-box;
+  /* Add scroll indicator for mobile */
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #f1f3f4;
+}
+
+.orders-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.orders-table-container::-webkit-scrollbar-track {
+  background: #f1f3f4;
+  border-radius: 4px;
+}
+
+.orders-table-container::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+.orders-table-container::-webkit-scrollbar-thumb:hover {
+  background: #5568d3;
+}
+
+/* Scroll hint for mobile */
+.scroll-hint-mobile {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  background: #e8f0fe;
+  color: #667eea;
+  font-size: 11px;
+  font-weight: 500;
+  border-bottom: 1px solid #e1e5e9;
+  position: sticky;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .orders-table {
@@ -420,6 +457,10 @@
     padding: 0 5px;
   }
 
+  .scroll-hint-mobile {
+    display: none; /* Hide hint on tablet and up */
+  }
+
   .orders-table {
     font-size: 13px;
     min-width: 700px; /* Slightly reduced for tablet */
@@ -460,6 +501,9 @@
    LARGE TABLET/SMALL DESKTOP - 769px and up
    ============================================ */
 @media (min-width: 769px) {
+  .scroll-hint-mobile {
+    display: none; /* Hide hint on desktop */
+  }
   .order-list-container {
     margin: 20px 0;
   }
