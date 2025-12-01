@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ordersAPI } from '../../services/api';
+import { ordersAPI, paymentsAPI } from '../../services/api';
 import './OrderList.css';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [stats, setStats] = useState(null);
@@ -13,8 +14,12 @@ const OrderList = () => {
     try {
       setLoading(true);
       setError('');
-      const data = await ordersAPI.getOrders();
-      setOrders(data);
+      const [ordersData, paymentsData] = await Promise.all([
+        ordersAPI.getOrders(),
+        paymentsAPI.getPayments()
+      ]);
+      setOrders(ordersData);
+      setPayments(paymentsData);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch orders');
     } finally {
@@ -81,6 +86,23 @@ const OrderList = () => {
       style: 'currency',
       currency: 'INR'
     }).format(amount);
+  };
+
+  // Calculate payment status for an order
+  const getOrderPaymentStatus = (order) => {
+    const orderPayments = payments.filter(p => 
+      p.relatedOrder && (p.relatedOrder._id === order._id || p.relatedOrder.toString() === order._id.toString())
+    );
+    const totalPaid = orderPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
+    const remaining = order.price - totalPaid;
+    const isFullyPaid = remaining <= 0;
+    
+    return {
+      totalPaid,
+      remaining: Math.max(0, remaining),
+      isFullyPaid,
+      paymentStatus: isFullyPaid ? 'Fully Paid' : 'Pending'
+    };
   };
 
   const filteredOrders = selectedStatus === 'all' 
@@ -190,11 +212,25 @@ const OrderList = () => {
                   </td>
                   <td className="price-info">
                     <div className="total-price">{formatCurrency(order.price)}</div>
-                    {order.advancePayment > 0 && (
-                      <div className="advance-payment">
-                        Advance: {formatCurrency(order.advancePayment)}
-                      </div>
-                    )}
+                    {(() => {
+                      const paymentStatus = getOrderPaymentStatus(order);
+                      return (
+                        <>
+                          {paymentStatus.totalPaid > 0 && (
+                            <div className="paid-amount">
+                              Paid: {formatCurrency(paymentStatus.totalPaid)}
+                            </div>
+                          )}
+                          {paymentStatus.remaining > 0 ? (
+                            <div className={`remaining-amount ${order.status === 'delivered' ? 'pending-alert' : ''}`}>
+                              {order.status === 'delivered' ? '⚠️ ' : ''}Pending: {formatCurrency(paymentStatus.remaining)}
+                            </div>
+                          ) : (
+                            <div className="fully-paid-badge">✓ Fully Paid</div>
+                          )}
+                        </>
+                      );
+                    })()}
                   </td>
                   <td>
                     <select

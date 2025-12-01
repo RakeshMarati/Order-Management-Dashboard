@@ -5,7 +5,8 @@ const {
   getPayment, 
   updatePayment, 
   deletePayment, 
-  getPaymentStats 
+  getPaymentStats,
+  getCustomerPaymentSummary
 } = require('../controllers/paymentController');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
@@ -17,6 +18,7 @@ router.use(authMiddleware);
 router.post('/', createPayment);
 router.get('/', getPayments);
 router.get('/stats', getPaymentStats);
+router.get('/customer-summary', getCustomerPaymentSummary);
 router.get('/:id', getPayment);
 router.put('/:id', updatePayment);
 router.delete('/:id', deletePayment);

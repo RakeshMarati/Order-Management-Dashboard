@@ -203,7 +203,12 @@ const PaymentList = () => {
                   <td>{payment.transactionId || '-'}</td>
                   <td>
                     {payment.relatedOrder ? (
-                      <span className="order-link">Order #{payment.relatedOrder._id?.slice(-6)}</span>
+                      <div>
+                        <span className="order-link">Order #{payment.relatedOrder._id?.slice(-6)}</span>
+                        {payment.notes && payment.notes.includes('Advance payment') && (
+                          <span className="advance-badge" title="Advance Payment">💰</span>
+                        )}
+                      </div>
                     ) : (
                       '-'
                     )}

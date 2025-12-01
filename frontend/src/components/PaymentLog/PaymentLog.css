@@ -81,6 +81,154 @@
   margin-top: 4px;
 }
 
+/* Customer Summary Card */
+.customer-summary-card {
+  background: #f8f9fa;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.customer-summary-card h5 {
+  margin: 0 0 15px 0;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.summary-value.success {
+  color: #28a745;
+}
+
+.summary-value.warning {
+  color: #ff9800;
+}
+
+.pending-orders-section,
+.payment-history-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.pending-orders-section h6,
+.payment-history-section h6 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.pending-order-item {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.order-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.order-status {
+  background: #667eea;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.order-amounts {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.order-amounts span {
+  color: #666;
+}
+
+.pending-amount {
+  color: #ff9800 !important;
+  font-weight: 600;
+}
+
+.select-order-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.select-order-btn:hover {
+  background: #5568d3;
+}
+
+.payment-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: white;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.payment-history-item span:first-child {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.linked-order-info {
+  background: #e3f2fd;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #1976d2;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 .submit-button {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -250,6 +398,12 @@
 .order-link {
   color: #667eea;
   font-size: 12px;
+}
+
+.advance-badge {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 .delete-btn {

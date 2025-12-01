@@ -106,6 +106,13 @@ export const paymentsAPI = {
     const response = await api.get('/payments/stats', { params: filters });
     return response.data;
   },
+  getCustomerPaymentSummary: async (customerName, customerContact) => {
+    const params = {};
+    if (customerName) params.customerName = customerName;
+    if (customerContact) params.customerContact = customerContact;
+    const response = await api.get('/payments/customer-summary', { params });
+    return response.data;
+  },
 };
 
 // Material Purchases API calls

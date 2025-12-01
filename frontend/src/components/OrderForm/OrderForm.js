@@ -26,9 +26,9 @@ const OrderForm = ({ onOrderCreated }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
-    // Special handling for contact number - only allow digits
+    // Special handling for contact number - only allow digits, max 10
     if (name === 'customerContact') {
-      const numericValue = value.replace(/\D/g, '');
+      const numericValue = value.replace(/\D/g, '').slice(0, 10);
       setFormData(prev => ({
         ...prev,
         [name]: numericValue
@@ -50,9 +50,9 @@ const OrderForm = ({ onOrderCreated }) => {
       return;
     }
 
-    // Contact number validation - minimum 10 digits
-    if (formData.customerContact.length < 10) {
-      setError('Contact number must be at least 10 digits');
+    // Contact number validation - exactly 10 digits
+    if (formData.customerContact.length !== 10) {
+      setError('Contact number must be exactly 10 digits');
       return;
     }
 
@@ -153,11 +153,11 @@ const OrderForm = ({ onOrderCreated }) => {
                   placeholder="Enter 10-digit contact number"
                   value={formData.customerContact}
                   onChange={handleInputChange}
-                  maxLength="15"
+                  maxLength="10"
                   required
                 />
-                {formData.customerContact && formData.customerContact.length < 10 && (
-                  <small className="validation-error">Contact number must be at least 10 digits</small>
+                {formData.customerContact && formData.customerContact.length !== 10 && formData.customerContact.length > 0 && (
+                  <small className="validation-error">Contact number must be exactly 10 digits</small>
                 )}
               </div>
             </div>

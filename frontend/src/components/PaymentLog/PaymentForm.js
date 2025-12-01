@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { paymentsAPI, ordersAPI } from '../../services/api';
 import './PaymentLog.css';
 
@@ -15,37 +15,105 @@ const PaymentForm = ({ onPaymentCreated }) => {
     notes: ''
   });
 
-  const [orders, setOrders] = useState([]);
+  const [customerSummary, setCustomerSummary] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchTriggered, setSearchTriggered] = useState(false);
 
-  useEffect(() => {
-    // Fetch orders for dropdown
-    const fetchOrders = async () => {
+  // Search for customer when name or contact is entered
+  const searchCustomer = useCallback(async (name, contact) => {
+    if ((!name || name.length < 2) && (!contact || contact.length !== 10)) {
+      setCustomerSummary(null);
+      return;
+    }
+
+    if (contact && contact.length === 10) {
       try {
-        const data = await ordersAPI.getOrders();
-        setOrders(data);
+        setIsSearching(true);
+        const summary = await paymentsAPI.getCustomerPaymentSummary(name || '', contact);
+        setCustomerSummary(summary);
+        setSearchTriggered(true);
+        
+        // Auto-fill customer details if found
+        if (summary.customerName && !formData.customerName) {
+          setFormData(prev => ({ ...prev, customerName: summary.customerName }));
+        }
+        if (summary.customerLocation && !formData.customerEmail) {
+          // Could use location for address field if we add it
+        }
       } catch (err) {
-        console.error('Failed to fetch orders:', err);
+        // Customer not found is okay, just clear summary
+        setCustomerSummary(null);
+      } finally {
+        setIsSearching(false);
       }
-    };
-    fetchOrders();
-  }, []);
+    } else if (name && name.length >= 2) {
+      try {
+        setIsSearching(true);
+        const summary = await paymentsAPI.getCustomerPaymentSummary(name, '');
+        setCustomerSummary(summary);
+        setSearchTriggered(true);
+        
+        // Auto-fill customer details if found
+        if (summary.customerContact && !formData.customerContact) {
+          setFormData(prev => ({ ...prev, customerContact: summary.customerContact }));
+        }
+      } catch (err) {
+        setCustomerSummary(null);
+      } finally {
+        setIsSearching(false);
+      }
+    }
+  }, [formData.customerName, formData.customerContact]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
     if (name === 'customerContact') {
-      const numericValue = value.replace(/\D/g, '');
+      const numericValue = value.replace(/\D/g, '').slice(0, 10);
       setFormData(prev => ({
         ...prev,
         [name]: numericValue
       }));
+      
+      // Search when contact reaches 10 digits
+      if (numericValue.length === 10) {
+        searchCustomer(formData.customerName, numericValue);
+      } else {
+        setCustomerSummary(null);
+      }
+    } else if (name === 'customerName') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+      
+      // Search when name has at least 2 characters
+      if (value.length >= 2) {
+        searchCustomer(value, formData.customerContact);
+      } else if (value.length === 0) {
+        setCustomerSummary(null);
+      }
     } else {
       setFormData(prev => ({
         ...prev,
         [name]: value
       }));
+    }
+  };
+
+  const handleOrderSelect = (orderId) => {
+    if (orderId && customerSummary) {
+      const order = customerSummary.pendingOrders.find(o => o.orderId === orderId);
+      if (order) {
+        setFormData(prev => ({
+          ...prev,
+          relatedOrder: orderId,
+          amount: order.pendingAmount > 0 ? order.pendingAmount.toString() : prev.amount,
+          notes: `Payment for order - ${order.product}${prev.notes ? ` | ${prev.notes}` : ''}`
+        }));
+      }
     }
   };
 
@@ -57,8 +125,8 @@ const PaymentForm = ({ onPaymentCreated }) => {
       return;
     }
 
-    if (formData.customerContact.length < 10) {
-      setError('Contact number must be at least 10 digits');
+    if (formData.customerContact.length !== 10) {
+      setError('Contact number must be exactly 10 digits');
       return;
     }
 
@@ -86,6 +154,8 @@ const PaymentForm = ({ onPaymentCreated }) => {
         transactionId: '',
         notes: ''
       });
+      setCustomerSummary(null);
+      setSearchTriggered(false);
       
       if (onPaymentCreated) {
         onPaymentCreated();
@@ -96,6 +166,13 @@ const PaymentForm = ({ onPaymentCreated }) => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR'
+    }).format(amount);
   };
 
   return (
@@ -128,11 +205,14 @@ const PaymentForm = ({ onPaymentCreated }) => {
                   placeholder="Enter 10-digit contact number"
                   value={formData.customerContact}
                   onChange={handleInputChange}
-                  maxLength="15"
+                  maxLength="10"
                   required
                 />
-                {formData.customerContact && formData.customerContact.length < 10 && (
-                  <small className="validation-error">Contact number must be at least 10 digits</small>
+                {formData.customerContact && formData.customerContact.length !== 10 && formData.customerContact.length > 0 && (
+                  <small className="validation-error">Contact number must be exactly 10 digits</small>
+                )}
+                {isSearching && (
+                  <small style={{ color: '#667eea', display: 'block', marginTop: '4px' }}>Searching...</small>
                 )}
               </div>
             </div>
@@ -147,6 +227,74 @@ const PaymentForm = ({ onPaymentCreated }) => {
                 onChange={handleInputChange}
               />
             </div>
+
+            {/* Customer Summary Card */}
+            {customerSummary && (
+              <div className="customer-summary-card">
+                <h5>📋 Customer Payment Summary</h5>
+                <div className="summary-grid">
+                  <div className="summary-item">
+                    <span className="summary-label">Total Orders:</span>
+                    <span className="summary-value">{customerSummary.totalOrders}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span className="summary-label">Total Order Value:</span>
+                    <span className="summary-value">{formatCurrency(customerSummary.totalOrderValue)}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span className="summary-label">Total Paid:</span>
+                    <span className="summary-value success">{formatCurrency(customerSummary.totalPaid)}</span>
+                  </div>
+                  <div className="summary-item">
+                    <span className="summary-label">Pending Amount:</span>
+                    <span className={`summary-value ${customerSummary.pendingAmount > 0 ? 'warning' : 'success'}`}>
+                      {formatCurrency(customerSummary.pendingAmount)}
+                    </span>
+                  </div>
+                </div>
+
+                {customerSummary.pendingOrders && customerSummary.pendingOrders.length > 0 && (
+                  <div className="pending-orders-section">
+                    <h6>📦 Pending Orders</h6>
+                    {customerSummary.pendingOrders.map(order => (
+                      <div key={order.orderId} className="pending-order-item">
+                        <div className="order-info">
+                          <strong>{order.product}</strong>
+                          <span className="order-status">{order.status}</span>
+                        </div>
+                        <div className="order-amounts">
+                          <span>Total: {formatCurrency(order.totalPrice)}</span>
+                          <span>Paid: {formatCurrency(order.paidAmount)}</span>
+                          <span className="pending-amount">Pending: {formatCurrency(order.pendingAmount)}</span>
+                        </div>
+                        <button
+                          type="button"
+                          className="select-order-btn"
+                          onClick={() => handleOrderSelect(order.orderId)}
+                        >
+                          Select This Order
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {customerSummary.paymentHistory && customerSummary.paymentHistory.length > 0 && (
+                  <div className="payment-history-section">
+                    <h6>💰 Payment History</h6>
+                    <div className="payment-history-list">
+                      {customerSummary.paymentHistory.slice(0, 5).map(payment => (
+                        <div key={payment.paymentId} className="payment-history-item">
+                          <span>{formatCurrency(payment.amount)}</span>
+                          <span>{new Date(payment.paymentDate).toLocaleDateString('en-IN')}</span>
+                          <span>{payment.paymentMethod.replace('_', ' ').toUpperCase()}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="form-section">
@@ -176,6 +324,11 @@ const PaymentForm = ({ onPaymentCreated }) => {
                   onChange={handleInputChange}
                   required
                 />
+                {customerSummary && customerSummary.pendingAmount > 0 && (
+                  <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+                    Pending: {formatCurrency(customerSummary.pendingAmount)}
+                  </small>
+                )}
               </div>
             </div>
             <div className="form-row">
@@ -208,26 +361,14 @@ const PaymentForm = ({ onPaymentCreated }) => {
                 />
               </div>
             </div>
-          </div>
-
-          <div className="form-section">
-            <h4>📦 Related Order (Optional)</h4>
-            <div className="form-group">
-              <label htmlFor="relatedOrder">Link to Order</label>
-              <select
-                id="relatedOrder"
-                name="relatedOrder"
-                value={formData.relatedOrder}
-                onChange={handleInputChange}
-              >
-                <option value="">Select an order (optional)</option>
-                {orders.map(order => (
-                  <option key={order._id} value={order._id}>
-                    {order.customerName} - {order.product} (₹{order.price})
-                  </option>
-                ))}
-              </select>
-            </div>
+            {formData.relatedOrder && (
+              <div className="form-group">
+                <label>Linked Order</label>
+                <div className="linked-order-info">
+                  {customerSummary?.pendingOrders.find(o => o.orderId === formData.relatedOrder)?.product || 'Order selected'}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="form-section">
@@ -261,4 +402,3 @@ const PaymentForm = ({ onPaymentCreated }) => {
 };
 
 export default PaymentForm;
-
