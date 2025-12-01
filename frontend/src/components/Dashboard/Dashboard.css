@@ -1,34 +1,40 @@
+/* ============================================
+   MOBILE-FIRST APPROACH - Dashboard Styles
+   ============================================ */
+
 .dashboard-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 20px;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding: 10px;
+  overflow-x: hidden;
 }
 
 .dashboard-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 25px 30px;
-  border-radius: 20px;
-  margin-bottom: 30px;
+  padding: 20px 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
   width: 100%;
   max-width: 100%;
+  animation: slideInDown 0.6s ease-out;
 }
 
 .header-content h1 {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0 0 5px 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   line-height: 1.2;
 }
 
 .header-content p {
-  font-size: 16px;
+  font-size: 13px;
   margin: 0;
   opacity: 0.9;
   font-weight: 400;
@@ -40,13 +46,16 @@
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  padding: 12px 24px;
-  font-size: 14px;
+  padding: 10px 20px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   white-space: nowrap;
+  width: 100%;
+  max-width: 180px;
+  min-height: 44px; /* Touch target */
 }
 
 .logout-button:hover {
@@ -57,45 +66,49 @@
 }
 
 .dashboard-main {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   width: 100%;
+  padding: 0 5px;
 }
 
 .dashboard-content {
   display: grid;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
+  animation: fadeInUp 0.8s ease-out;
 }
 
-/* Tabs Container */
+/* Tabs Container - Mobile First */
 .tabs-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 8px;
+  margin-bottom: 20px;
   background: white;
-  padding: 15px;
+  padding: 10px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
   flex-wrap: wrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab-button {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
+  gap: 6px;
+  padding: 10px 15px;
   border: 2px solid #e1e5e9;
   background: white;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #666;
   transition: all 0.3s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  min-height: 44px; /* Touch target */
 }
 
 .tab-button:hover {
@@ -113,86 +126,49 @@
 }
 
 .tab-icon {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .tab-label {
-  font-size: 14px;
+  font-size: 12px;
 }
 
-@media (max-width: 768px) {
-  .tabs-container {
-    padding: 10px;
-    gap: 8px;
+/* Animations */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-  
-  .tab-button {
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-  
-  .tab-icon {
-    font-size: 16px;
-  }
-  
-  .tab-label {
-    font-size: 12px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Mobile Responsive (320px - 480px) */
-@media (max-width: 480px) {
-  .dashboard-container {
-    padding: 10px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .dashboard-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-    padding: 20px 15px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .header-content h1 {
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
-  
-  .header-content p {
-    font-size: 13px;
-  }
-  
-  .logout-button {
-    width: 100%;
-    max-width: 180px;
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  
-  .dashboard-main {
-    padding: 0 5px;
-  }
-  
-  .dashboard-content {
-    gap: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Large Mobile responsive (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
+/* ============================================
+   TABLET - 481px and up
+   ============================================ */
+@media (min-width: 481px) {
   .dashboard-container {
     padding: 15px;
   }
   
   .dashboard-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
     padding: 25px 20px;
     border-radius: 16px;
     margin-bottom: 25px;
+    gap: 20px;
   }
   
   .header-content h1 {
@@ -218,22 +194,48 @@
   .dashboard-content {
     gap: 25px;
   }
+
+  .tabs-container {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .tab-button {
+    padding: 12px 18px;
+    font-size: 13px;
+  }
+  
+  .tab-icon {
+    font-size: 17px;
+  }
+  
+  .tab-label {
+    font-size: 13px;
+  }
 }
 
-/* Tablet responsive (769px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* ============================================
+   LARGE TABLET/SMALL DESKTOP - 769px and up
+   ============================================ */
+@media (min-width: 769px) {
   .dashboard-container {
     padding: 20px;
   }
   
   .dashboard-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
     padding: 25px 30px;
     border-radius: 18px;
     margin-bottom: 30px;
+    gap: 0;
   }
   
   .header-content h1 {
     font-size: 30px;
+    margin-bottom: 8px;
   }
   
   .header-content p {
@@ -241,6 +243,8 @@
   }
   
   .logout-button {
+    width: auto;
+    max-width: none;
     padding: 15px 30px;
     font-size: 16px;
   }
@@ -248,10 +252,30 @@
   .dashboard-content {
     gap: 30px;
   }
+
+  .tabs-container {
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .tab-button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .tab-icon {
+    font-size: 18px;
+  }
+  
+  .tab-label {
+    font-size: 14px;
+  }
 }
 
-/* Small Desktop responsive (1025px - 1366px) */
-@media (min-width: 1025px) and (max-width: 1366px) {
+/* ============================================
+   DESKTOP - 1025px and up
+   ============================================ */
+@media (min-width: 1025px) {
   .dashboard-container {
     padding: 25px;
   }
@@ -278,6 +302,7 @@
   
   .dashboard-main {
     padding: 0 15px;
+    max-width: 1400px;
   }
   
   .dashboard-content {
@@ -285,8 +310,10 @@
   }
 }
 
-/* Large Desktop responsive (1367px - 1919px) */
-@media (min-width: 1367px) and (max-width: 1919px) {
+/* ============================================
+   LARGE DESKTOP - 1367px and up
+   ============================================ */
+@media (min-width: 1367px) {
   .dashboard-container {
     padding: 30px;
   }
@@ -320,7 +347,9 @@
   }
 }
 
-/* Ultra-wide screens (1920px and above) */
+/* ============================================
+   ULTRA-WIDE - 1920px and up
+   ============================================ */
 @media (min-width: 1920px) {
   .dashboard-container {
     padding: 40px;
@@ -356,7 +385,9 @@
   }
 }
 
-/* Landscape orientation adjustments */
+/* ============================================
+   LANDSCAPE ORIENTATION - Mobile/Tablet
+   ============================================ */
 @media (orientation: landscape) and (max-height: 500px) {
   .dashboard-container {
     padding: 10px;
@@ -381,40 +412,35 @@
   .logout-button {
     padding: 8px 16px;
     font-size: 12px;
+    max-width: 150px;
   }
   
   .dashboard-content {
     gap: 15px;
   }
-}
 
-/* Animation for dashboard elements */
-.dashboard-header {
-  animation: slideInDown 0.6s ease-out;
-}
-
-.dashboard-content {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
+  .tabs-container {
+    padding: 8px;
+    gap: 6px;
+    margin-bottom: 15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .tab-button {
+    padding: 8px 12px;
+    font-size: 11px;
+    min-height: 36px;
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .logout-button {
+    min-height: 48px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .tab-button {
+    min-height: 48px;
   }
 }

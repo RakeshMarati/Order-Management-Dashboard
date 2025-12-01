@@ -1,17 +1,8 @@
-.App {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  text-align: center;
-  background-color: #ffffff;
-  color: #333333;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-}
+/* ============================================
+   MOBILE-FIRST APPROACH - Global Styles
+   ============================================ */
 
-/* Global responsive styles */
+/* Reset and Base */
 * {
   box-sizing: border-box;
 }
@@ -28,36 +19,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* Ensure all containers fit screen width */
+/* App Container - Mobile First */
+.App {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  text-align: center;
+  background-color: #ffffff;
+  color: #333333;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+/* Container - Mobile First */
 .container {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
-/* Mobile responsive (320px - 480px) */
-@media (max-width: 480px) {
-  .App {
-    font-size: 14px;
-  }
-  
-  .container {
-    padding: 0 10px;
-  }
-  
-  /* Prevent zoom on input focus for iOS */
-  input, select, textarea {
-    font-size: 16px !important;
-  }
+/* Prevent zoom on input focus for iOS - Mobile */
+input, select, textarea {
+  font-size: 16px !important;
 }
 
-/* Large Mobile responsive (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
+/* ============================================
+   TABLET - 481px and up
+   ============================================ */
+@media (min-width: 481px) {
   .App {
     font-size: 15px;
   }
@@ -67,8 +64,10 @@ body {
   }
 }
 
-/* Tablet responsive (769px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* ============================================
+   LARGE TABLET/SMALL DESKTOP - 769px and up
+   ============================================ */
+@media (min-width: 769px) {
   .App {
     font-size: 16px;
   }
@@ -78,8 +77,10 @@ body {
   }
 }
 
-/* Small Desktop responsive (1025px - 1366px) */
-@media (min-width: 1025px) and (max-width: 1366px) {
+/* ============================================
+   DESKTOP - 1025px and up
+   ============================================ */
+@media (min-width: 1025px) {
   .App {
     font-size: 16px;
   }
@@ -90,7 +91,9 @@ body {
   }
 }
 
-/* Large Desktop responsive (1367px and above) */
+/* ============================================
+   LARGE DESKTOP - 1367px and up
+   ============================================ */
 @media (min-width: 1367px) {
   .App {
     font-size: 17px;
@@ -102,7 +105,9 @@ body {
   }
 }
 
-/* Ultra-wide screens (1920px and above) */
+/* ============================================
+   ULTRA-WIDE - 1920px and up
+   ============================================ */
 @media (min-width: 1920px) {
   .App {
     font-size: 18px;
@@ -114,7 +119,9 @@ body {
   }
 }
 
-/* Landscape orientation adjustments */
+/* ============================================
+   LANDSCAPE ORIENTATION - Mobile/Tablet
+   ============================================ */
 @media (orientation: landscape) and (max-height: 500px) {
   .dashboard-container {
     padding: 10px;
@@ -135,7 +142,9 @@ body {
   }
 }
 
-/* High DPI displays */
+/* ============================================
+   HIGH DPI DISPLAYS
+   ============================================ */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .App {
     -webkit-font-smoothing: antialiased;

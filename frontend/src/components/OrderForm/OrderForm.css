@@ -1,20 +1,25 @@
+/* ============================================
+   MOBILE-FIRST APPROACH - Order Form Styles
+   ============================================ */
+
 .order-form-container {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .order-form-card {
   background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding: 15px;
   border: 1px solid #e9ecef;
+  margin: 5px;
 }
 
 .order-form-card h3 {
   color: #2c3e50;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   text-align: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
@@ -25,30 +30,37 @@
 .order-form {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
 
 .form-section {
   background: white;
-  border-radius: 15px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 15px 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f3f4;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.form-section:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
 
 .form-section h4 {
   color: #34495e;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 2px solid #e8f4fd;
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .form-group {
@@ -60,18 +72,20 @@
 .form-group label {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 12px 16px;
+  padding: 14px 16px;
   border: 2px solid #e1e8ed;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 16px; /* Prevents zoom on iOS */
   transition: all 0.3s ease;
   background: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -94,18 +108,29 @@
   font-family: inherit;
 }
 
+.form-group select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+  appearance: none;
+}
+
 .submit-button {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 15px 30px;
+  padding: 14px 20px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 10px;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  width: 100%;
+  min-height: 48px; /* Touch target */
 }
 
 .submit-button:hover:not(:disabled) {
@@ -125,12 +150,11 @@
   padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid #fed7d7;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   margin-top: 15px;
 }
 
-/* Validation error styles */
 .validation-error {
   color: #e74c3c;
   font-size: 12px;
@@ -145,58 +169,21 @@
   box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
 }
 
-/* Mobile Responsive */
-@media (max-width: 480px) {
-  .order-form-container {
-    margin: 10px 0;
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .order-form-card {
-    padding: 15px;
-    border-radius: 15px;
-    margin: 5px;
-  }
-  
-  .order-form-card h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .form-section {
-    padding: 15px 12px;
-    border-radius: 12px;
-  }
-  
-  .form-section h4 {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 14px 16px;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-  
-  .submit-button {
-    padding: 14px 20px;
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .order-form {
-    gap: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Tablet Responsive - Improved */
-@media (min-width: 481px) and (max-width: 768px) {
+/* ============================================
+   TABLET - 481px and up
+   ============================================ */
+@media (min-width: 481px) {
   .order-form-container {
     margin: 15px 0;
   }
@@ -224,7 +211,6 @@
   }
   
   .form-row {
-    grid-template-columns: 1fr;
     gap: 15px;
   }
   
@@ -235,10 +221,13 @@
     font-size: 16px;
   }
   
+  .form-group label {
+    font-size: 14px;
+  }
+  
   .submit-button {
     padding: 16px 30px;
     font-size: 16px;
-    width: 100%;
   }
   
   .order-form {
@@ -246,15 +235,23 @@
   }
 }
 
-/* Small Desktop */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* ============================================
+   LARGE TABLET/SMALL DESKTOP - 769px and up
+   ============================================ */
+@media (min-width: 769px) {
+  .order-form-container {
+    margin: 20px 0;
+  }
+
   .order-form-card {
     padding: 30px;
     max-width: 900px;
+    margin: 0 auto;
   }
   
   .order-form-card h3 {
     font-size: 24px;
+    margin-bottom: 25px;
   }
   
   .form-section {
@@ -263,9 +260,11 @@
   
   .form-section h4 {
     font-size: 18px;
+    margin-bottom: 15px;
   }
   
   .form-row {
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
   
@@ -279,10 +278,18 @@
   .submit-button {
     padding: 17px 35px;
     font-size: 17px;
+    width: auto;
+    max-width: 300px;
+  }
+  
+  .order-form {
+    gap: 25px;
   }
 }
 
-/* Large Desktop - Improved */
+/* ============================================
+   DESKTOP - 1200px and up
+   ============================================ */
 @media (min-width: 1200px) {
   .order-form-card {
     padding: 40px;
@@ -315,6 +322,10 @@
     font-size: 16px;
   }
   
+  .form-group label {
+    font-size: 14px;
+  }
+  
   .submit-button {
     padding: 18px 40px;
     font-size: 18px;
@@ -325,41 +336,10 @@
   }
 }
 
-/* Custom styling for specific form elements */
-.form-group select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 12px center;
-  background-repeat: no-repeat;
-  background-size: 16px;
-  padding-right: 40px;
-  appearance: none;
-}
-
-/* Animation for form sections */
-.form-section {
-  animation: slideInUp 0.5s ease-out;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Hover effects for form sections */
-.form-section:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-}
-
-/* Large Desktop responsive (1367px - 1919px) */
-@media (min-width: 1367px) and (max-width: 1919px) {
+/* ============================================
+   LARGE DESKTOP - 1367px and up
+   ============================================ */
+@media (min-width: 1367px) {
   .order-form-container {
     margin: 30px 0;
   }
@@ -367,7 +347,6 @@
   .order-form-card {
     padding: 45px;
     max-width: 1100px;
-    margin: 0 auto;
   }
   
   .order-form-card h3 {
@@ -410,7 +389,9 @@
   }
 }
 
-/* Ultra-wide screens (1920px and above) */
+/* ============================================
+   ULTRA-WIDE - 1920px and up
+   ============================================ */
 @media (min-width: 1920px) {
   .order-form-container {
     margin: 40px 0;
@@ -419,7 +400,6 @@
   .order-form-card {
     padding: 50px;
     max-width: 1200px;
-    margin: 0 auto;
   }
   
   .order-form-card h3 {
@@ -462,7 +442,9 @@
   }
 }
 
-/* Landscape orientation adjustments */
+/* ============================================
+   LANDSCAPE ORIENTATION - Mobile/Tablet
+   ============================================ */
 @media (orientation: landscape) and (max-height: 500px) {
   .order-form-container {
     margin: 10px 0;
@@ -511,5 +493,20 @@
   
   .order-form {
     gap: 15px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .submit-button {
+    min-height: 48px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    min-height: 44px;
   }
 }
