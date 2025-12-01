@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { paymentsAPI, ordersAPI } from '../../services/api';
+import React, { useState, useCallback } from 'react';
+import { paymentsAPI } from '../../services/api';
 import './PaymentLog.css';
 
 const PaymentForm = ({ onPaymentCreated }) => {
@@ -19,10 +19,9 @@ const PaymentForm = ({ onPaymentCreated }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [searchTriggered, setSearchTriggered] = useState(false);
 
   // Search for customer when name or contact is entered
-  const searchCustomer = useCallback(async (name, contact) => {
+  const searchCustomer = useCallback(async (name, contact, currentFormData) => {
     if ((!name || name.length < 2) && (!contact || contact.length !== 10)) {
       setCustomerSummary(null);
       return;
@@ -33,14 +32,10 @@ const PaymentForm = ({ onPaymentCreated }) => {
         setIsSearching(true);
         const summary = await paymentsAPI.getCustomerPaymentSummary(name || '', contact);
         setCustomerSummary(summary);
-        setSearchTriggered(true);
         
         // Auto-fill customer details if found
-        if (summary.customerName && !formData.customerName) {
+        if (summary.customerName && !currentFormData.customerName) {
           setFormData(prev => ({ ...prev, customerName: summary.customerName }));
-        }
-        if (summary.customerLocation && !formData.customerEmail) {
-          // Could use location for address field if we add it
         }
       } catch (err) {
         // Customer not found is okay, just clear summary
@@ -53,10 +48,9 @@ const PaymentForm = ({ onPaymentCreated }) => {
         setIsSearching(true);
         const summary = await paymentsAPI.getCustomerPaymentSummary(name, '');
         setCustomerSummary(summary);
-        setSearchTriggered(true);
         
         // Auto-fill customer details if found
-        if (summary.customerContact && !formData.customerContact) {
+        if (summary.customerContact && !currentFormData.customerContact) {
           setFormData(prev => ({ ...prev, customerContact: summary.customerContact }));
         }
       } catch (err) {
@@ -65,7 +59,7 @@ const PaymentForm = ({ onPaymentCreated }) => {
         setIsSearching(false);
       }
     }
-  }, [formData.customerName, formData.customerContact]);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +73,7 @@ const PaymentForm = ({ onPaymentCreated }) => {
       
       // Search when contact reaches 10 digits
       if (numericValue.length === 10) {
-        searchCustomer(formData.customerName, numericValue);
+        searchCustomer(formData.customerName, numericValue, { ...formData, customerContact: numericValue });
       } else {
         setCustomerSummary(null);
       }
@@ -91,7 +85,7 @@ const PaymentForm = ({ onPaymentCreated }) => {
       
       // Search when name has at least 2 characters
       if (value.length >= 2) {
-        searchCustomer(value, formData.customerContact);
+        searchCustomer(value, formData.customerContact, { ...formData, customerName: value });
       } else if (value.length === 0) {
         setCustomerSummary(null);
       }
@@ -155,7 +149,6 @@ const PaymentForm = ({ onPaymentCreated }) => {
         notes: ''
       });
       setCustomerSummary(null);
-      setSearchTriggered(false);
       
       if (onPaymentCreated) {
         onPaymentCreated();

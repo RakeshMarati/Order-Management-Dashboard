@@ -14,12 +14,20 @@ const OrderList = () => {
     try {
       setLoading(true);
       setError('');
-      const [ordersData, paymentsData] = await Promise.all([
-        ordersAPI.getOrders(),
-        paymentsAPI.getPayments()
-      ]);
+      
+      // Fetch orders - this is required
+      const ordersData = await ordersAPI.getOrders();
       setOrders(ordersData);
-      setPayments(paymentsData);
+      
+      // Fetch payments - this is optional, don't fail if it errors
+      try {
+        const paymentsData = await paymentsAPI.getPayments();
+        setPayments(paymentsData);
+      } catch (paymentErr) {
+        // If payments endpoint doesn't exist or fails, just log and continue
+        console.warn('Could not fetch payments:', paymentErr);
+        setPayments([]); // Set empty array so payment calculations don't break
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch orders');
     } finally {
@@ -90,6 +98,18 @@ const OrderList = () => {
 
   // Calculate payment status for an order
   const getOrderPaymentStatus = (order) => {
+    // If payments haven't loaded yet, just use advance payment
+    if (!payments || payments.length === 0) {
+      const totalPaid = order.advancePayment || 0;
+      const remaining = order.price - totalPaid;
+      return {
+        totalPaid,
+        remaining: Math.max(0, remaining),
+        isFullyPaid: remaining <= 0,
+        paymentStatus: remaining <= 0 ? 'Fully Paid' : 'Pending'
+      };
+    }
+    
     const orderPayments = payments.filter(p => 
       p.relatedOrder && (p.relatedOrder._id === order._id || p.relatedOrder.toString() === order._id.toString())
     );
