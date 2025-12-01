@@ -16,6 +16,7 @@ const OrderForm = ({ onOrderCreated }) => {
     deliveryDate: '',
     price: '',
     advancePayment: '',
+    paymentMethod: 'cash',
     notes: ''
   });
 
@@ -75,6 +76,7 @@ const OrderForm = ({ onOrderCreated }) => {
         deliveryDate: '',
         price: '',
         advancePayment: '',
+        paymentMethod: 'cash',
         notes: ''
       });
       
@@ -258,6 +260,28 @@ const OrderForm = ({ onOrderCreated }) => {
                 />
               </div>
             </div>
+            {formData.advancePayment && parseFloat(formData.advancePayment) > 0 && (
+              <div className="form-group">
+                <label htmlFor="paymentMethod">Payment Method *</label>
+                <select
+                  id="paymentMethod"
+                  name="paymentMethod"
+                  value={formData.paymentMethod}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="cash">Cash</option>
+                  <option value="bank_transfer">Bank Transfer</option>
+                  <option value="upi">UPI</option>
+                  <option value="card">Card</option>
+                  <option value="cheque">Cheque</option>
+                  <option value="other">Other</option>
+                </select>
+                <small style={{ color: '#666', fontSize: '12px', marginTop: '5px', display: 'block' }}>
+                  This payment will be automatically recorded in the Payments page
+                </small>
+              </div>
+            )}
           </div>
 
           <div className="form-section">

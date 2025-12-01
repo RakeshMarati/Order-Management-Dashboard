@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Payment = require('../models/Payment');
 
 // Create new order
 exports.createOrder = async (req, res) => {
@@ -16,7 +17,8 @@ exports.createOrder = async (req, res) => {
       deliveryDate,
       price,
       advancePayment,
-      notes
+      notes,
+      paymentMethod
     } = req.body;
 
     const order = await Order.create({
@@ -35,6 +37,25 @@ exports.createOrder = async (req, res) => {
       notes,
       user: req.user.id
     });
+
+    // Automatically create payment record if advance payment is made
+    if (advancePayment && advancePayment > 0) {
+      try {
+        await Payment.create({
+          customerName,
+          customerContact,
+          paymentDate: new Date(),
+          amount: advancePayment,
+          paymentMethod: paymentMethod || 'cash',
+          relatedOrder: order._id,
+          notes: `Advance payment for order - ${product}`,
+          user: req.user.id
+        });
+      } catch (paymentError) {
+        // Log error but don't fail the order creation
+        console.error('Error creating payment record:', paymentError);
+      }
+    }
 
     res.status(201).json(order);
   } catch (error) {
@@ -83,6 +104,10 @@ exports.updateOrder = async (req, res) => {
       return res.status(404).json({ message: 'Order not found' });
     }
 
+    // Store old advance payment to calculate difference
+    const oldAdvancePayment = order.advancePayment || 0;
+    const { paymentMethod } = req.body;
+
     // Update allowed fields
     const allowedUpdates = [
       'status', 'deliveryDate', 'actualDeliveryDate', 
@@ -101,6 +126,29 @@ exports.updateOrder = async (req, res) => {
     });
 
     await order.save();
+
+    // Create payment record if advance payment increased
+    const newAdvancePayment = order.advancePayment || 0;
+    const paymentDifference = newAdvancePayment - oldAdvancePayment;
+
+    if (paymentDifference > 0) {
+      try {
+        await Payment.create({
+          customerName: order.customerName,
+          customerContact: order.customerContact,
+          paymentDate: new Date(),
+          amount: paymentDifference,
+          paymentMethod: paymentMethod || 'cash',
+          relatedOrder: order._id,
+          notes: `Payment update for order - ${order.product}${paymentDifference === newAdvancePayment ? ' (Advance payment)' : ' (Additional payment)'}`,
+          user: req.user.id
+        });
+      } catch (paymentError) {
+        // Log error but don't fail the order update
+        console.error('Error creating payment record:', paymentError);
+      }
+    }
+
     res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
