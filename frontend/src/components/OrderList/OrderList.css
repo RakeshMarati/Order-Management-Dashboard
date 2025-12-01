@@ -134,13 +134,20 @@
   overflow-y: visible;
   border: 1px solid #f1f3f4;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  margin: 0;
+  /* Ensure container doesn't cause page overflow */
+  box-sizing: border-box;
 }
 
 .orders-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  min-width: 600px;
+  min-width: 800px; /* Minimum width for table, allows horizontal scroll on mobile */
+  table-layout: auto;
 }
 
 .orders-table thead {
@@ -178,6 +185,9 @@
   color: #667eea;
   font-family: 'Courier New', monospace;
   font-size: 11px;
+  min-width: 70px;
+  max-width: 80px;
+  white-space: nowrap;
 }
 
 .customer-info {
@@ -226,6 +236,8 @@
 
 .price-info {
   min-width: 100px;
+  max-width: 130px;
+  white-space: normal;
 }
 
 .total-price {
@@ -280,7 +292,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 80px;
+  max-width: 100px;
   min-height: 36px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .status-select:focus {
@@ -290,6 +305,8 @@
 
 .actions {
   text-align: center;
+  min-width: 50px;
+  max-width: 60px;
 }
 
 .delete-btn {
@@ -398,14 +415,24 @@
     font-size: 28px;
   }
 
+  .orders-table-container {
+    margin: 0 -5px; /* Negative margin to allow full width scroll */
+    padding: 0 5px;
+  }
+
   .orders-table {
     font-size: 13px;
-    min-width: 800px;
+    min-width: 700px; /* Slightly reduced for tablet */
   }
 
   .orders-table th,
   .orders-table td {
     padding: 10px 8px;
+  }
+  
+  .orders-table .customer-info,
+  .orders-table .product-info {
+    max-width: 180px;
   }
 
   .order-id {
@@ -486,6 +513,18 @@
   .orders-table {
     font-size: 14px;
     min-width: 100%;
+    table-layout: fixed; /* Fixed layout for better control */
+  }
+  
+  .orders-table th,
+  .orders-table td {
+    white-space: normal; /* Allow text wrapping */
+    word-wrap: break-word;
+  }
+  
+  .orders-table .customer-info,
+  .orders-table .product-info {
+    max-width: 200px;
   }
 
   .orders-table th,
