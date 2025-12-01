@@ -1,52 +1,56 @@
+/* ============================================
+   MOBILE-FIRST APPROACH - Base Styles (Mobile)
+   ============================================ */
+
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  padding: 10px;
 }
 
 .login-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  padding: 40px;
+  padding: 30px 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   text-align: center;
 }
 
 .login-card h2 {
   color: #333;
   margin-bottom: 8px;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
 }
 
 .login-subtitle {
   color: #666;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-size: 14px;
 }
 
-/* Auth Mode Toggle */
+/* Auth Mode Toggle - Mobile */
 .auth-mode-toggle {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 8px;
+  margin-bottom: 25px;
   background: #f5f5f5;
-  padding: 4px;
+  padding: 3px;
   border-radius: 8px;
 }
 
 .mode-button {
   flex: 1;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border: none;
   background: transparent;
   color: #666;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   border-radius: 6px;
@@ -64,52 +68,20 @@
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
-/* Auth Footer */
-.auth-footer {
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid #e1e5e9;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.link-button {
-  background: none;
-  border: none;
-  color: #667eea;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-  margin-left: 5px;
-  font-size: 14px;
-  transition: color 0.2s;
-}
-
-.link-button:hover:not(:disabled) {
-  color: #764ba2;
-}
-
-.link-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .login-form {
   text-align: left;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 16px;
   border: 2px solid #e1e5e9;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 16px; /* Prevents zoom on iOS */
   transition: border-color 0.3s ease;
   box-sizing: border-box;
 }
@@ -123,38 +95,6 @@
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
-
-.login-button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  margin-top: 10px;
-}
-
-.login-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-}
-
-.login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.error-message {
-  color: #e74c3c;
-  font-size: 14px;
-  margin: 10px 0;
-  text-align: center;
-}
-
 
 /* Password group styles */
 .password-group {
@@ -183,291 +123,440 @@
   padding-right: 45px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 480px) {
-  .login-container {
-    padding: 10px;
-  }
-  
-  .login-card {
-    padding: 30px 20px;
-    max-width: 100%;
-    margin: 10px;
-  }
-  
-  .login-card h2 {
-    font-size: 24px;
-  }
-  
-  .form-group input {
-    padding: 14px 16px;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-  
-  .login-button {
-    padding: 14px;
-    font-size: 16px;
-  }
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-top: 10px;
 }
 
-/* Tablet Responsive - Improved */
-@media (min-width: 481px) and (max-width: 768px) {
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin: 8px 0;
+  text-align: center;
+}
+
+/* Auth Footer - Mobile */
+.auth-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e1e5e9;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: 5px;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.link-button:hover:not(:disabled) {
+  color: #764ba2;
+}
+
+.link-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TABLET - 481px and up
+   ============================================ */
+@media (min-width: 481px) {
+  .login-container {
+    padding: 20px;
+  }
+
   .login-card {
     padding: 35px 30px;
     max-width: 450px;
-    margin: 20px;
+    border-radius: 12px;
   }
-  
+
   .login-card h2 {
     font-size: 26px;
     margin-bottom: 8px;
   }
-  
+
   .login-subtitle {
     font-size: 16px;
     margin-bottom: 25px;
   }
-  
+
+  .auth-mode-toggle {
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 4px;
+  }
+
+  .mode-button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
   .form-group input {
     padding: 16px 18px;
     font-size: 16px;
   }
-  
+
   .password-group input {
     padding-right: 50px;
   }
-  
+
   .password-toggle {
     right: 15px;
     font-size: 20px;
   }
-  
+
   .login-button {
     padding: 16px 30px;
     font-size: 16px;
   }
+
+  .auth-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    font-size: 14px;
+  }
+
+  .link-button {
+    font-size: 14px;
+  }
 }
 
-/* Small Desktop */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* ============================================
+   SMALL DESKTOP - 769px and up
+   ============================================ */
+@media (min-width: 769px) {
+  .login-container {
+    padding: 30px;
+  }
+
   .login-card {
     padding: 40px 35px;
     max-width: 480px;
+    border-radius: 12px;
   }
-  
+
   .login-card h2 {
     font-size: 28px;
+    margin-bottom: 10px;
   }
-  
+
   .login-subtitle {
     font-size: 17px;
+    margin-bottom: 30px;
   }
-  
+
+  .auth-mode-toggle {
+    margin-bottom: 30px;
+  }
+
   .form-group input {
     padding: 17px 20px;
     font-size: 16px;
   }
-  
+
   .password-group input {
     padding-right: 55px;
   }
-  
+
   .password-toggle {
     right: 18px;
     font-size: 22px;
   }
-  
+
   .login-button {
     padding: 17px 35px;
     font-size: 17px;
   }
+
+  .auth-footer {
+    margin-top: 30px;
+    padding-top: 25px;
+  }
 }
 
-/* Large Desktop - Improved */
+/* ============================================
+   LARGE DESKTOP - 1200px and up
+   ============================================ */
 @media (min-width: 1200px) {
   .login-card {
     max-width: 500px;
     padding: 50px 45px;
+    border-radius: 15px;
   }
-  
+
   .login-card h2 {
     font-size: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  
+
   .login-subtitle {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
   }
-  
+
   .form-group input {
     padding: 18px 22px;
     font-size: 17px;
+    border-radius: 10px;
   }
-  
+
   .password-group input {
     padding-right: 60px;
   }
-  
+
   .password-toggle {
     right: 20px;
     font-size: 24px;
   }
-  
+
   .login-button {
     padding: 18px 40px;
     font-size: 18px;
+    border-radius: 10px;
+  }
+
+  .auth-footer {
+    margin-top: 35px;
+    padding-top: 30px;
+    font-size: 15px;
   }
 }
 
-/* Large Desktop responsive (1367px - 1919px) */
-@media (min-width: 1367px) and (max-width: 1919px) {
+/* ============================================
+   EXTRA LARGE DESKTOP - 1367px and up
+   ============================================ */
+@media (min-width: 1367px) {
   .login-container {
-    padding: 30px;
+    padding: 40px;
   }
-  
+
   .login-card {
     max-width: 550px;
     padding: 55px 50px;
     border-radius: 16px;
   }
-  
+
   .login-card h2 {
     font-size: 36px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
-  
+
   .login-subtitle {
     font-size: 19px;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
   }
-  
+
   .form-group input {
     padding: 20px 25px;
     font-size: 18px;
     border-radius: 10px;
   }
-  
+
   .password-group input {
     padding-right: 65px;
   }
-  
+
   .password-toggle {
     right: 22px;
     font-size: 26px;
   }
-  
+
   .login-button {
     padding: 20px 45px;
     font-size: 19px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
-  
+
   .auth-footer {
-    margin-top: 35px;
-    padding-top: 25px;
-    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 35px;
+    font-size: 16px;
   }
 }
 
-/* Ultra-wide screens (1920px and above) */
+/* ============================================
+   ULTRA-WIDE SCREENS - 1920px and up
+   ============================================ */
 @media (min-width: 1920px) {
   .login-container {
-    padding: 40px;
+    padding: 50px;
   }
-  
+
   .login-card {
     max-width: 600px;
     padding: 60px 55px;
     border-radius: 18px;
   }
-  
+
   .login-card h2 {
     font-size: 40px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
   }
-  
+
   .login-subtitle {
     font-size: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
   }
-  
+
   .form-group input {
     padding: 22px 28px;
     font-size: 19px;
     border-radius: 12px;
   }
-  
+
   .password-group input {
     padding-right: 70px;
   }
-  
+
   .password-toggle {
     right: 25px;
     font-size: 28px;
   }
-  
+
   .login-button {
     padding: 22px 50px;
     font-size: 20px;
     border-radius: 12px;
   }
-  
+
   .auth-footer {
-    margin-top: 40px;
-    padding-top: 30px;
-    font-size: 14px;
+    margin-top: 45px;
+    padding-top: 40px;
+    font-size: 17px;
   }
 }
 
-/* Landscape orientation adjustments */
+/* ============================================
+   LANDSCAPE ORIENTATION - Mobile/Tablet
+   ============================================ */
 @media (orientation: landscape) and (max-height: 500px) {
   .login-container {
     padding: 10px;
   }
-  
+
   .login-card {
     padding: 20px 25px;
-    max-width: 400px;
+    max-width: 500px;
     border-radius: 10px;
   }
-  
+
   .login-card h2 {
     font-size: 20px;
     margin-bottom: 5px;
   }
-  
+
   .login-subtitle {
     font-size: 12px;
     margin-bottom: 15px;
   }
-  
-  .form-group {
+
+  .auth-mode-toggle {
     margin-bottom: 15px;
+    padding: 2px;
   }
-  
+
+  .mode-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
   .form-group input {
     padding: 10px 15px;
     font-size: 14px;
   }
-  
+
   .password-group input {
     padding-right: 40px;
   }
-  
+
   .password-toggle {
     right: 10px;
     font-size: 16px;
   }
-  
+
   .login-button {
     padding: 10px 20px;
     font-size: 14px;
+    margin-top: 8px;
   }
-  
+
   .auth-footer {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 15px;
+    padding-top: 12px;
     font-size: 11px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .login-button {
+    min-height: 48px; /* Minimum touch target size */
+  }
+
+  .mode-button {
+    min-height: 44px;
+  }
+
+  .password-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .link-button {
+    min-height: 44px;
+    padding: 8px;
+  }
+}
+
+/* ============================================
+   HIGH DPI DISPLAYS
+   ============================================ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .login-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .mode-button.active {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
   }
 }
