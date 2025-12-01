@@ -80,4 +80,116 @@ export const ordersAPI = {
   },
 };
 
+// Payments API calls
+export const paymentsAPI = {
+  createPayment: async (paymentData) => {
+    const response = await api.post('/payments', paymentData);
+    return response.data;
+  },
+  getPayments: async (filters = {}) => {
+    const response = await api.get('/payments', { params: filters });
+    return response.data;
+  },
+  getPayment: async (id) => {
+    const response = await api.get(`/payments/${id}`);
+    return response.data;
+  },
+  updatePayment: async (id, paymentData) => {
+    const response = await api.put(`/payments/${id}`, paymentData);
+    return response.data;
+  },
+  deletePayment: async (id) => {
+    const response = await api.delete(`/payments/${id}`);
+    return response.data;
+  },
+  getPaymentStats: async (filters = {}) => {
+    const response = await api.get('/payments/stats', { params: filters });
+    return response.data;
+  },
+};
+
+// Material Purchases API calls
+export const materialPurchasesAPI = {
+  createMaterialPurchase: async (purchaseData) => {
+    const response = await api.post('/material-purchases', purchaseData);
+    return response.data;
+  },
+  getMaterialPurchases: async (filters = {}) => {
+    const response = await api.get('/material-purchases', { params: filters });
+    return response.data;
+  },
+  getMaterialPurchase: async (id) => {
+    const response = await api.get(`/material-purchases/${id}`);
+    return response.data;
+  },
+  updateMaterialPurchase: async (id, purchaseData) => {
+    const response = await api.put(`/material-purchases/${id}`, purchaseData);
+    return response.data;
+  },
+  deleteMaterialPurchase: async (id) => {
+    const response = await api.delete(`/material-purchases/${id}`);
+    return response.data;
+  },
+  getMaterialPurchaseStats: async (filters = {}) => {
+    const response = await api.get('/material-purchases/stats', { params: filters });
+    return response.data;
+  },
+};
+
+// Income API calls
+export const incomesAPI = {
+  createIncome: async (incomeData) => {
+    const response = await api.post('/incomes', incomeData);
+    return response.data;
+  },
+  getIncomes: async (filters = {}) => {
+    const response = await api.get('/incomes', { params: filters });
+    return response.data;
+  },
+  getIncome: async (id) => {
+    const response = await api.get(`/incomes/${id}`);
+    return response.data;
+  },
+  updateIncome: async (id, incomeData) => {
+    const response = await api.put(`/incomes/${id}`, incomeData);
+    return response.data;
+  },
+  deleteIncome: async (id) => {
+    const response = await api.delete(`/incomes/${id}`);
+    return response.data;
+  },
+  getIncomeStats: async (filters = {}) => {
+    const response = await api.get('/incomes/stats', { params: filters });
+    return response.data;
+  },
+};
+
+// Salaries API calls
+export const salariesAPI = {
+  createSalary: async (salaryData) => {
+    const response = await api.post('/salaries', salaryData);
+    return response.data;
+  },
+  getSalaries: async (filters = {}) => {
+    const response = await api.get('/salaries', { params: filters });
+    return response.data;
+  },
+  getSalary: async (id) => {
+    const response = await api.get(`/salaries/${id}`);
+    return response.data;
+  },
+  updateSalary: async (id, salaryData) => {
+    const response = await api.put(`/salaries/${id}`, salaryData);
+    return response.data;
+  },
+  deleteSalary: async (id) => {
+    const response = await api.delete(`/salaries/${id}`);
+    return response.data;
+  },
+  getSalaryStats: async (filters = {}) => {
+    const response = await api.get('/salaries/stats', { params: filters });
+    return response.data;
+  },
+};
+
 export default api;

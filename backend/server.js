@@ -2,6 +2,10 @@ const express = require('express');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const materialPurchaseRoutes = require('./routes/materialPurchaseRoutes');
+const incomeRoutes = require('./routes/incomeRoutes');
+const salaryRoutes = require('./routes/salaryRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -25,8 +29,12 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/material-purchases', materialPurchaseRoutes);
+app.use('/api/incomes', incomeRoutes);
+app.use('/api/salaries', salaryRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
